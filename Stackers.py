@@ -1,10 +1,14 @@
 from sense_hat import SenseHat
 from pygame.locals import *
 import pygame
+import random
 import time
 #shows the class structure for gaming mode
 sense = SenseHat()
 sense.clear()
+counter =0 
+
+
 
 class stack():
 	def __init__(self):
@@ -15,10 +19,20 @@ class stack():
 		pygame.time.set_timer(USEREVENT +1, 800)
 		while self.gaming:
 			for event in pygame.event.get():
-				if event.type == KEYDOWN: #if u press a key it does this
-					sense.set_pixel (1, 5, (130, 45, 255))		
-				else:
-					sense.set_pixel (1, 6, (0, 140, 85))
+				x=0
+				while counter ==0:  #if u press a key it does this
+					
+					y = 0
+					a = random.randint(1,255)
+					b = random.randint(1,255)
+					c = random.randint(1,255)
+					color = (a, b, c)
+					sense.set_pixel (x, y, color)
+					time.sleep(1)
+					sense.set_pixel(x, y, (0, 0, 0))
+					x = x+1
+					if x==8:
+						x=0
 					
 if __name__ == "__main__":
 	try:
